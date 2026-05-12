@@ -1,0 +1,21 @@
+version: "2"
+
+run:
+  timeout: 5m
+  tests: true
+  build-tags:
+    - sqlite_omit_load_extension
+
+linters:
+  enable:
+    - errcheck
+    - gosec
+    - govet
+    - revive
+    - staticcheck
+
+  settings:
+    revive:
+      rules:
+        - name: package-comments
+          disabled: true

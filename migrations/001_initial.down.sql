@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS audit_log;
+DROP TABLE IF EXISTS auth_tokens;
+DROP TABLE IF EXISTS media_blobs;
+DROP TABLE IF EXISTS messages;
+DROP TABLE IF EXISTS chats;
+DROP TABLE IF EXISTS group_participants;
+DROP TABLE IF EXISTS groups;
+DROP TABLE IF EXISTS contacts;
+DROP TABLE IF EXISTS device_session;

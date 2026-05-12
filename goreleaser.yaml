@@ -1,0 +1,37 @@
+version: 2
+
+project_name: wh-cli
+
+builds:
+  - id: wh-cli
+    main: ./cmd/wh-cli
+    binary: wh-cli
+    flags:
+      - -trimpath
+    tags:
+      - sqlite_omit_load_extension
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+
+archives:
+  - formats: ["tar.gz"]
+    format_overrides:
+      - goos: windows
+        formats: ["zip"]
+
+checksum:
+  name_template: "checksums.txt"
+
+signs:
+  - cmd: cosign
+    args:
+      - sign-blob
+      - --yes
+      - --output-signature=${signature}
+      - ${artifact}
+    artifacts: checksum

@@ -1,0 +1,34 @@
+# Build outputs
+bin/
+dist/
+coverage.out
+
+# Local runtime state
+*.db
+*.db-*
+/session/
+/media/
+*.whcli.enc
+wh-cli-daemon.*.log
+wh-cli-qr*.png
+tmp-*.log
+docs/screenshots/raw/
+screenshots/
+
+# Secrets and local config
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+
+# Tool caches
+.cache/
+.gocache/
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db

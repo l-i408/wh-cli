@@ -1,0 +1,22 @@
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.28.0
+    hooks:
+      - id: gitleaks
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
+    hooks:
+      - id: detect-secrets
+        args: ["--baseline", ".secrets.baseline"]
+  - repo: local
+    hooks:
+      - id: gofumpt
+        name: gofumpt
+        entry: gofumpt -w
+        language: system
+        types: [go]
+      - id: forbid-runtime-state
+        name: forbid runtime state and real WhatsApp JIDs
+        entry: pwsh -NoProfile -File scripts/precommit/forbid-runtime-state.ps1
+        language: system
+        pass_filenames: false
