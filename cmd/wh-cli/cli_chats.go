@@ -164,7 +164,8 @@ func printChatTable(chats []cliChat, includeAll bool) {
 		if name == "" {
 			name = "(sin nombre)"
 		}
-		fmt.Fprintf(w, "%s\t%d\t%s\t%s\t%s\n",
+		fmt.Fprintf(
+			w, "%s\t%d\t%s\t%s\t%s\n",
 			formatCLITime(chat.UpdatedAt),
 			chat.UnreadCount,
 			chat.Type,
@@ -180,7 +181,8 @@ func printMessageTable(messages []cliMessage, chatJID string) {
 	fmt.Fprintln(w, "WHEN\tFROM\tTYPE\tMESSAGE")
 	for _, msg := range messages {
 		body := messageSummary(msg)
-		fmt.Fprintf(w, "%s\t%s\t%s\t%s\n",
+		fmt.Fprintf(
+			w, "%s\t%s\t%s\t%s\n",
 			formatCLITime(msg.Timestamp),
 			messageSenderLabel(msg, chatJID),
 			msg.Type,

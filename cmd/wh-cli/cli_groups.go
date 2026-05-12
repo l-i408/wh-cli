@@ -121,7 +121,8 @@ func printGroupTable(groups []cliGroup) {
 		if owner == "" {
 			owner = "-"
 		}
-		fmt.Fprintf(w, "%s\t%s\t%s\t%s\n",
+		fmt.Fprintf(
+			w, "%s\t%s\t%s\t%s\n",
 			formatGroupTime(group.UpdatedAt),
 			truncateText(name, 42),
 			truncateText(owner, 24),

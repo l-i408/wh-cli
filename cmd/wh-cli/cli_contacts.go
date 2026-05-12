@@ -102,7 +102,8 @@ func printContactTable(contacts []cliContact, limit int, all bool) {
 		if name == "" {
 			name = "(sin nombre)"
 		}
-		fmt.Fprintf(w, "%s\t%s\t%s\t%s\n",
+		fmt.Fprintf(
+			w, "%s\t%s\t%s\t%s\n",
 			truncateText(name, 32),
 			truncateText(contact.AgendaName, 24),
 			truncateText(contact.PushName, 24),
