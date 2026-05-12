@@ -111,7 +111,7 @@ func runGroupParticipants(ctx context.Context, args []string) error {
 
 func printGroupTable(groups []cliGroup) {
 	w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', 0)
-	fmt.Fprintln(w, "UPDATED\tNAME\tOWNER\tJID")
+	_, _ = fmt.Fprintln(w, "UPDATED\tNAME\tOWNER\tJID")
 	for _, group := range groups {
 		name := group.Name
 		if name == "" {
@@ -121,7 +121,7 @@ func printGroupTable(groups []cliGroup) {
 		if owner == "" {
 			owner = "-"
 		}
-		fmt.Fprintf(
+		_, _ = fmt.Fprintf(
 			w, "%s\t%s\t%s\t%s\n",
 			formatGroupTime(group.UpdatedAt),
 			truncateText(name, 42),
@@ -134,13 +134,13 @@ func printGroupTable(groups []cliGroup) {
 
 func printGroupParticipantsTable(participants []cliGroupParticipant) {
 	w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', 0)
-	fmt.Fprintln(w, "ROLE\tNAME\tJID")
+	_, _ = fmt.Fprintln(w, "ROLE\tNAME\tJID")
 	for _, participant := range participants {
 		name := participant.DisplayName
 		if name == "" {
 			name = "(sin nombre)"
 		}
-		fmt.Fprintf(w, "%s\t%s\t%s\n", participant.Role, truncateText(name, 36), participant.ContactJID)
+		_, _ = fmt.Fprintf(w, "%s\t%s\t%s\n", participant.Role, truncateText(name, 36), participant.ContactJID)
 	}
 	_ = w.Flush()
 }

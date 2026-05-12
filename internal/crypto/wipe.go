@@ -7,6 +7,7 @@ import (
 
 // ZeroFile overwrites a file with zeros before removing it.
 func ZeroFile(path string) error {
+	// #nosec G304 -- wipe only receives explicit wh-cli runtime paths selected by callers.
 	f, err := os.OpenFile(path, os.O_WRONLY, 0)
 	if os.IsNotExist(err) {
 		return nil

@@ -155,7 +155,7 @@ func parseMessagesArgs(args []string) (messagesOptions, error) {
 
 func printChatTable(chats []cliChat, includeAll bool) {
 	w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', 0)
-	fmt.Fprintln(w, "WHEN\tUNREAD\tTYPE\tNAME\tJID")
+	_, _ = fmt.Fprintln(w, "WHEN\tUNREAD\tTYPE\tNAME\tJID")
 	for _, chat := range chats {
 		if !includeAll && isAuxiliaryChat(chat.JID) {
 			continue
@@ -164,7 +164,7 @@ func printChatTable(chats []cliChat, includeAll bool) {
 		if name == "" {
 			name = "(sin nombre)"
 		}
-		fmt.Fprintf(
+		_, _ = fmt.Fprintf(
 			w, "%s\t%d\t%s\t%s\t%s\n",
 			formatCLITime(chat.UpdatedAt),
 			chat.UnreadCount,
@@ -178,10 +178,10 @@ func printChatTable(chats []cliChat, includeAll bool) {
 
 func printMessageTable(messages []cliMessage, chatJID string) {
 	w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', 0)
-	fmt.Fprintln(w, "WHEN\tFROM\tTYPE\tMESSAGE")
+	_, _ = fmt.Fprintln(w, "WHEN\tFROM\tTYPE\tMESSAGE")
 	for _, msg := range messages {
 		body := messageSummary(msg)
-		fmt.Fprintf(
+		_, _ = fmt.Fprintf(
 			w, "%s\t%s\t%s\t%s\n",
 			formatCLITime(msg.Timestamp),
 			messageSenderLabel(msg, chatJID),

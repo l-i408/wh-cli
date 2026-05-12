@@ -80,9 +80,6 @@ func (r *MessageRepo) SaveText(ctx context.Context, msg Message, displayName str
 	if chatDisplayName == "" {
 		chatDisplayName = msg.ChatJID
 	}
-	if displayName == "" {
-		displayName = msg.ChatJID
-	}
 	if msg.SenderJID != "" && contactPushName != "" {
 		if _, err := r.db.Exec(ctx, `
 INSERT INTO contacts (jid, push_name, updated_at)

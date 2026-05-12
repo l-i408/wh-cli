@@ -92,7 +92,7 @@ func printContactTable(contacts []cliContact, limit int, all bool) {
 		limit = 50
 	}
 	w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', 0)
-	fmt.Fprintln(w, "NAME\tAGENDA\tPUSH\tJID")
+	_, _ = fmt.Fprintln(w, "NAME\tAGENDA\tPUSH\tJID")
 	printed := 0
 	for _, contact := range contacts {
 		if !all && printed >= limit {
@@ -102,7 +102,7 @@ func printContactTable(contacts []cliContact, limit int, all bool) {
 		if name == "" {
 			name = "(sin nombre)"
 		}
-		fmt.Fprintf(
+		_, _ = fmt.Fprintf(
 			w, "%s\t%s\t%s\t%s\n",
 			truncateText(name, 32),
 			truncateText(contact.AgendaName, 24),
@@ -113,6 +113,6 @@ func printContactTable(contacts []cliContact, limit int, all bool) {
 	}
 	_ = w.Flush()
 	if !all && len(contacts) > printed {
-		fmt.Fprintf(os.Stdout, "\nShowing %d of %d contacts. Use --all or --json for the full list.\n", printed, len(contacts))
+		_, _ = fmt.Fprintf(os.Stdout, "\nShowing %d of %d contacts. Use --all or --json for the full list.\n", printed, len(contacts))
 	}
 }

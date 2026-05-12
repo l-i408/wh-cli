@@ -47,15 +47,15 @@ func runHelp(_ context.Context, _ []string) error {
 		{"wipe", "wh-cli wipe", "Borra permanentemente datos locales y sesion."},
 	}
 
-	fmt.Fprintln(os.Stdout, "wh-cli - WhatsApp local CLI")
-	fmt.Fprintln(os.Stdout)
-	fmt.Fprintln(os.Stdout, "Usage:")
-	fmt.Fprintln(os.Stdout, "  wh-cli <command> [options]")
-	fmt.Fprintln(os.Stdout)
-	fmt.Fprintln(os.Stdout, "Commands:")
+	_, _ = fmt.Fprintln(os.Stdout, "wh-cli - WhatsApp local CLI")
+	_, _ = fmt.Fprintln(os.Stdout)
+	_, _ = fmt.Fprintln(os.Stdout, "Usage:")
+	_, _ = fmt.Fprintln(os.Stdout, "  wh-cli <command> [options]")
+	_, _ = fmt.Fprintln(os.Stdout)
+	_, _ = fmt.Fprintln(os.Stdout, "Commands:")
 	w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', 0)
 	for _, cmd := range commands {
-		fmt.Fprintf(w, "  %s\t%s\n", cmd.Usage, cmd.Description)
+		_, _ = fmt.Fprintf(w, "  %s\t%s\n", cmd.Usage, cmd.Description)
 	}
 	_ = w.Flush()
 	return nil

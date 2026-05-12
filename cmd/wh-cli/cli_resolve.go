@@ -406,9 +406,9 @@ func levenshteinDistance(a string, b string) int {
 
 func printResolveTable(matches []resolvedTarget) {
 	w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', 0)
-	fmt.Fprintln(w, "TYPE\tNAME\tSOURCE\tJID")
+	_, _ = fmt.Fprintln(w, "TYPE\tNAME\tSOURCE\tJID")
 	for _, match := range matches {
-		fmt.Fprintf(w, "%s\t%s\t%s\t%s\n", match.Type, truncateText(match.DisplayName, 40), match.Source, match.JID)
+		_, _ = fmt.Fprintf(w, "%s\t%s\t%s\t%s\n", match.Type, truncateText(match.DisplayName, 40), match.Source, match.JID)
 	}
 	_ = w.Flush()
 }

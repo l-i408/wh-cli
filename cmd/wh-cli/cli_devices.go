@@ -69,19 +69,19 @@ func runDeviceRevoke(ctx context.Context, args []string) error {
 	if _, err := doRequest(req); err != nil {
 		return err
 	}
-	fmt.Printf("device %s revoked\n", jid)
+	_, _ = fmt.Fprintf(os.Stdout, "device %s revoked\n", jid)
 	return nil
 }
 
 func printDeviceTable(devices []cliDevice) {
 	w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', 0)
-	fmt.Fprintln(w, "PLATFORM\tJID")
+	_, _ = fmt.Fprintln(w, "PLATFORM\tJID")
 	for _, device := range devices {
 		platform := device.Platform
 		if platform == "" {
 			platform = "-"
 		}
-		fmt.Fprintf(w, "%s\t%s\n", platform, device.JID)
+		_, _ = fmt.Fprintf(w, "%s\t%s\n", platform, device.JID)
 	}
 	_ = w.Flush()
 }

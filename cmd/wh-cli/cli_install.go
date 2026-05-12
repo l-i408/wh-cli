@@ -29,7 +29,7 @@ func runInstall(_ context.Context, args []string) error {
 	if err != nil {
 		return fmt.Errorf("resolve executable symlink: %w", err)
 	}
-	if err := os.MkdirAll(*dir, 0o755); err != nil {
+	if err := os.MkdirAll(*dir, 0o750); err != nil {
 		return fmt.Errorf("create install directory: %w", err)
 	}
 
@@ -47,13 +47,13 @@ func runInstall(_ context.Context, args []string) error {
 		pathUpdated = updated
 	}
 
-	fmt.Fprintf(os.Stdout, "Installed %s\n", target)
+	_, _ = fmt.Fprintf(os.Stdout, "Installed %s\n", target)
 	if pathUpdated {
-		fmt.Fprintln(os.Stdout, "Updated the user PATH. Open a new terminal and run: wh-cli status")
+		_, _ = fmt.Fprintln(os.Stdout, "Updated the user PATH. Open a new terminal and run: wh-cli status")
 	} else if directoryInPath(*dir) {
-		fmt.Fprintln(os.Stdout, "The install directory is already in PATH. Run: wh-cli status")
+		_, _ = fmt.Fprintln(os.Stdout, "The install directory is already in PATH. Run: wh-cli status")
 	} else {
-		fmt.Fprintf(os.Stdout, "Add this directory to PATH to run wh-cli globally: %s\n", *dir)
+		_, _ = fmt.Fprintf(os.Stdout, "Add this directory to PATH to run wh-cli globally: %s\n", *dir)
 	}
 	return nil
 }
@@ -81,14 +81,16 @@ func copyExecutable(source string, target string) error {
 	if samePath(source, target) {
 		return nil
 	}
+	// #nosec G304 -- source is the current executable path resolved from os.Executable.
 	in, err := os.Open(source)
 	if err != nil {
 		return fmt.Errorf("open current executable: %w", err)
 	}
-	defer in.Close()
+	defer func() { _ = in.Close() }()
 
 	tmp := target + ".tmp"
-	out, err := os.OpenFile(tmp, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0o755)
+	// #nosec G304 -- target is the requested install path for this wh-cli binary.
+	out, err := os.OpenFile(tmp, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0o600)
 	if err != nil {
 		return fmt.Errorf("create target executable: %w", err)
 	}
@@ -107,6 +109,12 @@ func copyExecutable(source string, target string) error {
 	if err := os.Rename(tmp, target); err != nil {
 		_ = os.Remove(tmp)
 		return fmt.Errorf("replace target executable: %w", err)
+	}
+	if runtime.GOOS != "windows" {
+		// #nosec G302 -- installed CLI binaries must be executable by the user.
+		if err := os.Chmod(target, 0o755); err != nil {
+			return fmt.Errorf("mark target executable: %w", err)
+		}
 	}
 	return nil
 }
@@ -140,6 +148,7 @@ func ensureUserPath(dir string) (bool, error) {
 	if current != "" {
 		next = current + ";" + dir
 	}
+	// #nosec G204 -- command is fixed; only registry value data is user PATH content.
 	cmd := exec.Command("reg", "add", `HKCU\Environment`, "/v", "Path", "/t", "REG_EXPAND_SZ", "/d", next, "/f")
 	if output, err := cmd.CombinedOutput(); err != nil {
 		return false, fmt.Errorf("update user PATH: %w: %s", err, strings.TrimSpace(string(output)))

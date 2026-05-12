@@ -32,12 +32,12 @@ func runSetup(ctx context.Context, args []string) error {
 		return err
 	}
 	if status == "connected" {
-		fmt.Println("WhatsApp session is connected.")
-		fmt.Println("Try: wh-cli chats")
+		_, _ = fmt.Fprintln(os.Stdout, "WhatsApp session is connected.")
+		_, _ = fmt.Fprintln(os.Stdout, "Try: wh-cli chats")
 		return nil
 	}
 
-	fmt.Println("Scan this QR with WhatsApp > Linked devices:")
+	_, _ = fmt.Fprintln(os.Stdout, "Scan this QR with WhatsApp > Linked devices:")
 	if err := runQR(ctx, []string{"--addr", *addr}); err != nil {
 		return err
 	}
@@ -46,8 +46,8 @@ func runSetup(ctx context.Context, args []string) error {
 		time.Sleep(2 * time.Second)
 		status, err = sessionStatus(ctx, *addr)
 		if err == nil && status == "connected" {
-			fmt.Println("WhatsApp session connected.")
-			fmt.Println("Try: wh-cli chats")
+			_, _ = fmt.Fprintln(os.Stdout, "WhatsApp session connected.")
+			_, _ = fmt.Fprintln(os.Stdout, "Try: wh-cli chats")
 			return nil
 		}
 	}
@@ -63,20 +63,23 @@ func ensureDaemonRunning(ctx context.Context, addr string) error {
 		return fmt.Errorf("resolve executable: %w", err)
 	}
 	logDir := defaultSetupLogDir()
-	if err := os.MkdirAll(logDir, 0o755); err != nil {
+	if err := os.MkdirAll(logDir, 0o750); err != nil {
 		return fmt.Errorf("create setup log dir: %w", err)
 	}
 	outPath := filepath.Join(logDir, "daemon.out.log")
 	errPath := filepath.Join(logDir, "daemon.err.log")
+	// #nosec G304 -- path is under the wh-cli setup log directory.
 	out, err := os.OpenFile(outPath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0o600)
 	if err != nil {
 		return fmt.Errorf("open daemon stdout log: %w", err)
 	}
+	// #nosec G304 -- path is under the wh-cli setup log directory.
 	errFile, err := os.OpenFile(errPath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0o600)
 	if err != nil {
 		_ = out.Close()
 		return fmt.Errorf("open daemon stderr log: %w", err)
 	}
+	// #nosec G204 -- exe is this wh-cli binary resolved from os.Executable.
 	cmd := exec.CommandContext(context.Background(), exe, "daemon")
 	cmd.Stdout = out
 	cmd.Stderr = errFile
@@ -125,7 +128,7 @@ func healthCheck(ctx context.Context, addr string) error {
 	if err != nil {
 		return err
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
 		return errors.New(resp.Status)
 	}
