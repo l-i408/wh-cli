@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">wh-cli logo</title>
+  <desc id="desc">A terminal prompt inside a chat bubble.</desc>
+  <rect width="256" height="256" rx="56" fill="#0d1117"/>
+  <path d="M54 56h148c18.8 0 34 15.2 34 34v70c0 18.8-15.2 34-34 34h-76l-42 30v-30H54c-18.8 0-34-15.2-34-34V90c0-18.8 15.2-34 34-34Z" fill="#16a34a"/>
+  <path d="M54 75h148c8.3 0 15 6.7 15 15v70c0 8.3-6.7 15-15 15H97l-28 20v-20H54c-8.3 0-15-6.7-15-15V90c0-8.3 6.7-15 15-15Z" fill="#111827"/>
+  <path d="M79 111l28 17-28 17" fill="none" stroke="#22c55e" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M123 151h54" fill="none" stroke="#e5e7eb" stroke-width="13" stroke-linecap="round"/>
+</svg>

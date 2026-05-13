@@ -15,14 +15,14 @@ const (
 	StatusLoggedOut = "logged_out"
 )
 
-// MemorySession is an A1 placeholder session provider used until whatsmeow is wired.
+// MemorySession is an in-memory session provider for tests and fallback wiring.
 type MemorySession struct {
 	mu     sync.Mutex
 	status string
 	qr     string
 }
 
-// NewMemorySession constructs a session provider with a deterministic QR placeholder.
+// NewMemorySession constructs a session provider with a deterministic QR value.
 func NewMemorySession() *MemorySession {
 	return &MemorySession{status: StatusLoggedOut, qr: "WH-CLI-QR-PENDING"}
 }
@@ -50,14 +50,14 @@ func (s *MemorySession) QR(ctx context.Context) (<-chan string, error) {
 	return ch, nil
 }
 
-// LatestQR returns the memory session QR placeholder.
+// LatestQR returns the memory session QR value.
 func (s *MemorySession) LatestQR() (string, bool) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	return s.qr, s.qr != ""
 }
 
-// PairCode returns a deterministic placeholder pairing code for tests.
+// PairCode returns a deterministic pairing code for tests.
 func (s *MemorySession) PairCode(_ context.Context, _ string) (string, error) {
 	s.mu.Lock()
 	defer s.mu.Unlock()

@@ -33,9 +33,9 @@ wh-cli messages "Marta" --json
 Commands accept a display name or a raw JID:
 
 ```powershell
-wh-cli resolve "Catequesis Beniparrell"
-wh-cli messages "Catequesis Beniparrell"
-wh-cli send "Marta Catequista" "Hola"
+wh-cli resolve "Family"
+wh-cli messages "Family"
+wh-cli send "Marta" "Hola"
 ```
 
 If more than one target matches, the command exits with invalid input and prints candidates. Use a more specific name or the exact JID.
@@ -53,7 +53,7 @@ wh-cli send "Marta" --audio .\voice.ogg
 
 ```powershell
 wh-cli groups
-wh-cli group participants "Catequesis Beniparrell"
+wh-cli group participants "Family"
 wh-cli contacts --limit 50
 wh-cli contact alias <jid> "Nombre corto"
 ```

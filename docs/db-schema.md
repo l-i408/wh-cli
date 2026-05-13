@@ -1,6 +1,6 @@
 # Database Schema
 
-The persistent store is a single SQLite database opened through SQLCipher once A1 lands. A0 creates the first migration with the minimum tables required by the project plan.
+The persistent store is a single SQLite database opened through SQLCipher. Migrations define the schema used by the daemon and CLI.
 
 ## Tables
 

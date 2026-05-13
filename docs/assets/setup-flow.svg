@@ -22,6 +22,7 @@
   <rect x="184" y="374" width="34" height="18" fill="#111827"/>
   <text x="44" y="456" fill="#22c55e" font-family="Consolas, Menlo, monospace" font-size="22">WhatsApp session connected.</text>
   <text x="44" y="492" fill="#e5e7eb" font-family="Consolas, Menlo, monospace" font-size="22">Try: wh-cli chats</text>
-  <text x="430" y="274" fill="#9ca3af" font-family="Inter, Arial, sans-serif" font-size="28">One command starts the daemon, authenticates the CLI,</text>
-  <text x="430" y="314" fill="#9ca3af" font-family="Inter, Arial, sans-serif" font-size="28">and guides the WhatsApp QR pairing flow.</text>
+  <text x="392" y="260" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="24">One command starts the daemon,</text>
+  <text x="392" y="296" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="24">authenticates the CLI and guides</text>
+  <text x="392" y="332" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="24">the WhatsApp QR pairing flow.</text>
 </svg>

@@ -432,15 +432,15 @@ func TestMessageRepoListChatsUsesGroupNameInsteadOfSenderPushName(t *testing.T) 
 
 	groups := NewGroupRepo(db)
 	if err := groups.Save(context.Background(), Group{
-		JID:  "catequesis@g.us",
-		Name: "Grupo Catequesis Beniparrell",
+		JID:  "family@g.us",
+		Name: "Family",
 	}, nil); err != nil {
 		t.Fatalf("Save group returned error: %v", err)
 	}
 	repo := NewMessageRepo(db)
 	if err := repo.SaveText(context.Background(), Message{
 		ID:        "group-message",
-		ChatJID:   "catequesis@g.us",
+		ChatJID:   "family@g.us",
 		SenderJID: "marta@lid",
 		Type:      "text",
 		Body:      "hola",
@@ -457,7 +457,7 @@ func TestMessageRepoListChatsUsesGroupNameInsteadOfSenderPushName(t *testing.T) 
 	if len(chats) != 1 {
 		t.Fatalf("len(chats) = %d, want 1: %+v", len(chats), chats)
 	}
-	if chats[0].DisplayName != "Grupo Catequesis Beniparrell" {
+	if chats[0].DisplayName != "Family" {
 		t.Fatalf("display name = %q, want group name", chats[0].DisplayName)
 	}
 }

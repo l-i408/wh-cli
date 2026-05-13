@@ -30,7 +30,7 @@ Mitigation: encrypted storage, keyring-backed secrets, redacted JID logging, pre
 
 Risk: login or unlock endpoints are brute-forced or spammed.
 
-Mitigation: A1 middleware will rate-limit `/auth/login`, `/auth/refresh`, and `/auth/unlock`.
+Mitigation: auth middleware rate-limits `/auth/login`, `/auth/refresh`, and `/auth/unlock`.
 
 ## Elevation of Privilege
 

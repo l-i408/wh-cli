@@ -1,10 +1,18 @@
-# wh-cli
+<p align="center">
+  <img src="docs/assets/logo.svg" alt="wh-cli logo" width="128">
+</p>
 
-Local WhatsApp CLI and API for humans, scripts and AI agents.
+<h1 align="center">wh-cli</h1>
 
-[![CI](https://github.com/l-i408/wh-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/l-i408/wh-cli/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/l-i408/wh-cli)](https://github.com/l-i408/wh-cli/releases/latest)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+<p align="center">
+  Local WhatsApp CLI and API for humans, scripts and AI agents.
+</p>
+
+<p align="center">
+  <a href="https://github.com/l-i408/wh-cli/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/l-i408/wh-cli/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://github.com/l-i408/wh-cli/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/l-i408/wh-cli"></a>
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-blue.svg"></a>
+</p>
 
 `wh-cli` links your WhatsApp account through the standard multi-device QR flow, runs a localhost-only daemon, and exposes a practical command line plus a REST/WebSocket API. It is designed so a person can use WhatsApp from a terminal and an agent can resolve contacts, read recent context and send messages without scraping WhatsApp Web.
 
@@ -20,7 +28,7 @@ Local WhatsApp CLI and API for humans, scripts and AI agents.
 
 - Runs a local WhatsApp daemon bound to `127.0.0.1` by default.
 - Provides CLI commands for setup, QR pairing, chats, messages, contacts, groups, sending, media, devices and event streaming.
-- Lets commands accept human names such as `"Marta"` or `"Catequesis Beniparrell"` instead of forcing raw WhatsApp JIDs.
+- Lets commands accept human names such as `"Marta"` or `"Family"` instead of forcing raw WhatsApp JIDs.
 - Prints clean tables by default and raw JSON with `--json` for agents and automation.
 - Stores local state in SQLite and keeps tokens/secrets in the OS keyring.
 - Exposes REST endpoints and a WebSocket event stream for advanced integrations.
@@ -134,7 +142,7 @@ Most commands accept either a raw WhatsApp JID or a human-readable name:
 
 ```powershell
 wh-cli resolve "Marta"
-wh-cli messages "Grupo Catequesis Beniparrell"
+wh-cli messages "Family"
 wh-cli send "Papa" "Llegare en 10 minutos"
 ```
 
@@ -200,7 +208,7 @@ Read [SECURITY.md](SECURITY.md) before exposing the daemon beyond localhost or h
 
 ## Production Scope
 
-The production surface is CLI + daemon + REST/WebSocket API. The previous Bubble Tea TUI experiment is not shipped.
+The production surface is CLI + daemon + REST/WebSocket API.
 
 Normal user flow:
 

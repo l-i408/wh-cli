@@ -53,7 +53,7 @@ func sessionStatus(ctx context.Context, addr string) (string, error) {
 func runLogin(ctx context.Context, args []string) error {
 	fs := flag.NewFlagSet("login", flag.ContinueOnError)
 	addr := fs.String("addr", defaultDaemonAddr, "daemon address")
-	passphraseHash := fs.String("passphrase-hash", "", "temporary A1 passphrase hash")
+	passphraseHash := fs.String("passphrase-hash", "", "local passphrase hash")
 	if err := fs.Parse(args); err != nil {
 		return fmt.Errorf("%w: %w", errInvalidInput, err)
 	}

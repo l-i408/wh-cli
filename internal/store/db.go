@@ -51,7 +51,7 @@ func (db *DB) Query(ctx context.Context, query string, args ...any) (*sql.Rows, 
 	return db.sql.QueryContext(ctx, query, args...)
 }
 
-// ApplyInitialSchema creates the A0 schema when it is not present.
+// ApplyInitialSchema creates the schema when it is not present.
 func (db *DB) ApplyInitialSchema(ctx context.Context) error {
 	if _, err := db.Exec(ctx, initialSchema); err != nil {
 		return fmt.Errorf("apply initial schema: %w", err)

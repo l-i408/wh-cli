@@ -1,6 +1,6 @@
 # Architecture
 
-`wh-cli` is a local-first WhatsApp automation daemon. The daemon owns the WhatsApp connection, encrypted storage, authentication, REST API, and WebSocket event stream. Human UI and automation clients are separate clients of the same API.
+`wh-cli` is a local-first WhatsApp automation daemon. The daemon owns the WhatsApp connection, encrypted storage, authentication, REST API, and WebSocket event stream. CLI commands and automation clients are separate clients of the same API.
 
 ## Components
 
@@ -12,10 +12,6 @@
 - `internal/auth`: passphrase, JWT, refresh-token rotation, and token repository.
 - `internal/keyring`: OS keyring integration for master key and JWT secret.
 - `internal/crypto`: KDF, SQLCipher opening/rekey, encrypted export/import, and wipe helpers.
-
-## A1 Status
-
-The current A1 implementation has the local auth pipeline in place: JWT signing, `jti` persistence, refresh rotation, protected logout, OS keyring token storage for CLI tokens, and a memory-backed WhatsApp session placeholder. The placeholder exposes `logged_out` and `qr_pending` states so API and CLI flows can be tested before the real `whatsmeow` QR client is wired behind the same interface.
 
 ## Login QR Sequence
 
@@ -69,7 +65,7 @@ sequenceDiagram
     API-->>CLI: 202 Message
 ```
 
-Media sending is intentionally daemon-local in A3: the CLI passes a local path and the daemon reads it from the same machine. The stored copy is content-addressed by SHA256 so repeated sends of the same file reuse the same local blob.
+Media sending is daemon-local: the CLI passes a local path and the daemon reads it from the same machine. The stored copy is content-addressed by SHA256 so repeated sends of the same file reuse the same local blob.
 
 ## Message Action Sequence
 
@@ -89,7 +85,7 @@ sequenceDiagram
     API-->>CLI: 204 or 202
 ```
 
-A4 actions are intentionally anchored to the local message store. This avoids asking agents to reconstruct WhatsApp message keys themselves and keeps the CLI/API surface stable for humans and automation.
+Message actions are anchored to the local message store. This avoids asking agents to reconstruct WhatsApp message keys themselves and keeps the CLI/API surface stable for humans and automation.
 
 ## Receive Message Sequence
 
