@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="620" viewBox="0 0 1100 620" role="img" aria-labelledby="title desc">
+  <title id="title">wh-cli chat commands</title>
+  <desc id="desc">Terminal screenshot showing chats, resolve, messages and send commands.</desc>
+  <rect width="1100" height="620" fill="#0d1117"/>
+  <rect x="32" y="28" width="1036" height="564" rx="10" fill="#111827" stroke="#30363d"/>
+  <circle cx="62" cy="58" r="7" fill="#ff5f56"/>
+  <circle cx="86" cy="58" r="7" fill="#ffbd2e"/>
+  <circle cx="110" cy="58" r="7" fill="#27c93f"/>
+  <text x="44" y="104" fill="#7dd3fc" font-family="Consolas, Menlo, monospace" font-size="22">PS C:\Users\you&gt; wh-cli chats</text>
+  <text x="44" y="148" fill="#9ca3af" font-family="Consolas, Menlo, monospace" font-size="19">WHEN        UNREAD  TYPE   NAME                         JID</text>
+  <text x="44" y="184" fill="#e5e7eb" font-family="Consolas, Menlo, monospace" font-size="19">20:14       0       dm     Marta                        236644158464040@lid</text>
+  <text x="44" y="218" fill="#e5e7eb" font-family="Consolas, Menlo, monospace" font-size="19">19:58       2       group  Catequesis Beniparrell        120363423128422507@g.us</text>
+  <text x="44" y="252" fill="#e5e7eb" font-family="Consolas, Menlo, monospace" font-size="19">Yesterday   0       dm     Papa                         62676491321463@lid</text>
+  <text x="44" y="314" fill="#7dd3fc" font-family="Consolas, Menlo, monospace" font-size="22">PS C:\Users\you&gt; wh-cli resolve "Marta"</text>
+  <text x="44" y="358" fill="#9ca3af" font-family="Consolas, Menlo, monospace" font-size="19">TYPE   NAME    SOURCE   JID</text>
+  <text x="44" y="394" fill="#e5e7eb" font-family="Consolas, Menlo, monospace" font-size="19">dm     Marta   contact  236644158464040@lid</text>
+  <text x="44" y="456" fill="#7dd3fc" font-family="Consolas, Menlo, monospace" font-size="22">PS C:\Users\you&gt; wh-cli messages "Marta" --limit 2</text>
+  <text x="44" y="500" fill="#9ca3af" font-family="Consolas, Menlo, monospace" font-size="19">WHEN   FROM   TYPE   MESSAGE</text>
+  <text x="44" y="536" fill="#e5e7eb" font-family="Consolas, Menlo, monospace" font-size="19">20:12  them   text   Nos vemos luego</text>
+  <text x="44" y="570" fill="#e5e7eb" font-family="Consolas, Menlo, monospace" font-size="19">20:13  me     text   Perfecto</text>
+</svg>
